@@ -1,0 +1,32 @@
+/*
+class Node{
+    int data;
+    Node left,right;
+
+    Node(int key)
+    {
+        data = key;
+        left = right = null;
+    }
+}
+*/
+class Solution {
+    public boolean isSumProperty(Node root) {
+        // Base case: empty or leaf node
+        if (root == null || (root.left == null && root.right == null))
+            return true;
+
+        int sum = 0;
+
+        if (root.left != null)
+            sum += root.left.data;
+
+        if (root.right != null)
+            sum += root.right.data;
+
+        // Check current node and recursively check subtrees
+        return (root.data == sum) 
+            && isSumProperty(root.left) 
+            && isSumProperty(root.right);
+    }
+}
